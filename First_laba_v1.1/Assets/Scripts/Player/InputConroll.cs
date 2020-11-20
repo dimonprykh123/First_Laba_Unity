@@ -7,45 +7,55 @@ using UnityEditorInternal;
 [RequireComponent(typeof(Mouvment_controller))]
 public class InputConroll : MonoBehaviour
 {
-    Mouvment_controller _playerMouvment;
+    Mouvment_controller _playerMovement;
     DateTime _strikeClickTime;
-    float _mouve;
+    float _move;
     bool _jump;
-    bool _crowling;
-    bool _canAtack;    
+    bool _crouch;
+    bool _canAtack;
+
     private void Start()
     {
-        _playerMouvment = GetComponent<Mouvment_controller>();
+        _playerMovement = GetComponent<Mouvment_controller>();
     }
+    // Start is called before the first frame update
+
     void Update()
     {
-        _mouve = Input.GetAxisRaw("Horizontal");
+        _move = Input.GetAxisRaw("Horizontal");
         if (Input.GetButtonUp("Jump"))
         {
             _jump = true;
         }
-        _crowling = Input.GetKey(KeyCode.C);
+
+        _crouch = Input.GetKey(KeyCode.C);
+
         if (Input.GetKey(KeyCode.E))
-            _playerMouvment.StartCasting();
-        if (Input.GetButtonDown("Fire1")) {
+            _playerMovement.StartCasting();
+        if (Input.GetButtonDown("Fire1"))
+        {
             _strikeClickTime = DateTime.Now;
             _canAtack = true;
-        } 
+        }
         if (Input.GetButtonUp("Fire1"))
         {
             float holdTime = (float)(DateTime.Now - _strikeClickTime).TotalSeconds;
-            if(_canAtack)
-                _playerMouvment.StartStrike(holdTime);
-            _canAtack = false;    
-        }
-        if ((DateTime.Now - _strikeClickTime).TotalSeconds >= _playerMouvment.ChargeTime*2 && _canAtack) {
-            _playerMouvment.StartStrike(_playerMouvment.ChargeTime);
+            if (_canAtack)
+                _playerMovement.StartStrike(holdTime);
             _canAtack = false;
         }
+
+        if ((DateTime.Now - _strikeClickTime).TotalSeconds >= _playerMovement.ChargeTime * 2 && _canAtack)
+        {
+            _playerMovement.StartStrike(_playerMovement.ChargeTime);
+            _canAtack = false;
+        }
+
     }
+
     private void FixedUpdate()
     {
-        _playerMouvment.Move(_mouve, _jump, _crowling);
+        _playerMovement.Move(_move, _jump, _crouch);
         _jump = false;
     }
 }

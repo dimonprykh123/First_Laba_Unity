@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 725008492868203178}
   - component: {fileID: 7296025254491718266}
   - component: {fileID: 7620471546040282191}
-  - component: {fileID: -4224643260411449708}
+  - component: {fileID: 197852798806419128}
   m_Layer: 12
   m_Name: Rogue_weapon_004
   m_TagString: Untagged
@@ -121,7 +121,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0.1544868, y: 0.46625677}
   m_Size: {x: 0.5058549, y: 3.025239}
   m_Direction: 0
---- !u!114 &-4224643260411449708
+--- !u!114 &197852798806419128
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,4 +133,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f57003ccf664bfb43bc126e1904fa5da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 25
+  _damage: 20

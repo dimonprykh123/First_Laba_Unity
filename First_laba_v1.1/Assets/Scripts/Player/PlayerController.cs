@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +14,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] Slider _hpSlider;
     [SerializeField] Slider _mpSlider;
+    [SerializeField] TMP_Text _coins;
+    private int _currentCoins = 0;
 
     Mouvment_controller _playerMovement;
     Vector2 _startPosition;
@@ -77,6 +80,10 @@ public class PlayerController : MonoBehaviour
             _currentMP = _maxMP;
         _mpSlider.value = _currentMP;
         return true;
+    }
+    public void ChangeCoins(int val) {
+        _currentCoins += val;
+        _coins.text = _currentCoins.ToString();
     }
 
     public void OnDeath()

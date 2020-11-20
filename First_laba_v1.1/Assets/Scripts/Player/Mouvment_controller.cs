@@ -66,6 +66,7 @@ public class Mouvment_controller : MonoBehaviour
         _playerRB = GetComponent<Rigidbody2D>();
         _playerAnimator = GetComponent<Animator>();
         _playerController = GetComponent<PlayerController>();
+        _strikeCollider.enabled = false;
     }
 
     private void FixedUpdate()
@@ -212,7 +213,7 @@ public class Mouvment_controller : MonoBehaviour
 
     private void CastFire()
     {
-        GameObject fireBall = Instantiate(_fireBall, _firePoint.position, Quaternion.identity);
+        GameObject fireBall = Instantiate(_fireBall, _firePoint.position,_faceRight ? Quaternion.Euler(0,0,-90): Quaternion.Euler(0, 0, 90));
         fireBall.GetComponent<Rigidbody2D>().velocity = transform.right * _fireBallSpeed;
         fireBall.GetComponent<SpriteRenderer>().flipX = !_faceRight;
         Destroy(fireBall, 5f);
@@ -252,6 +253,7 @@ public class Mouvment_controller : MonoBehaviour
 
     private void Strike()
     {
+        _isStriking = true;
         Collider2D[] enemies = Physics2D.OverlapCircleAll(_strikePoint.position, _strikeRange, _enemies);
         for (int i = 0; i < enemies.Length; i++)
         {

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.UI; 
 using System;
 using Random = UnityEngine.Random;
 
@@ -60,6 +60,7 @@ public abstract class EnemyControllerBase : MonoBehaviour
 
         if (_currentState == EnemyState.Mouve)
             Move();
+       
     }
 
     protected virtual void Update()
@@ -69,6 +70,7 @@ public abstract class EnemyControllerBase : MonoBehaviour
 
         if (Time.time - _lastStateChange > _timeToNextChange)
             GetRandomState();
+
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
@@ -87,19 +89,18 @@ public abstract class EnemyControllerBase : MonoBehaviour
     {
         if (_currentState == EnemyState.Death)
             return;
-
         _currentHp -= damage;
+        _hpSlider.value = _currentHp;
         Debug.Log(String.Format("Enemy {0} take damage {1} and his currentHp = {2}", gameObject, damage, _currentHp));
         if (_currentHp <= 0)
         {
             _currentHp = 0;
-            _hpSlider.value = _currentHp;
             ChangeState(EnemyState.Death);
         }
 
     }
 
-    public virtual void OnDeath()
+    public void OnDeath()
     {
         Destroy(gameObject);
     }
