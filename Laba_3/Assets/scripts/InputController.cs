@@ -24,18 +24,18 @@ public class InputController
     }
     void OnUpdate()
     { 
-        _leftPointerClicked = Input.GetButton("Fire1");
-        Debug.Log("Update");
+        //_leftPointerClicked = Input.GetButton("Fire1");
+    
 
     }
 
     private void OnLateUpdate()
     {
-        Debug.Log("LateUpdate");
     }
 
     private void OnFixedUpdate()
     {
+        _leftPointerClicked = Input.GetButton("Fire1");
         if (_leftPointerClicked)
         {
             RaycastHit hitInfo;
@@ -45,7 +45,7 @@ public class InputController
             }
 
         }
-        Debug.Log("FixedUpdate");
+  
     }
 
     private void OnDestroy() 

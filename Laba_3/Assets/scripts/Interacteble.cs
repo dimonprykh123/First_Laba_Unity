@@ -45,10 +45,10 @@ public class Interacteble : MonoBehaviour
     private void Interect()
     {
         _hasInterected = true;
-        Debug.Log("Interacted" + gameObject);
+        Debug.Log("Interacted " + gameObject);
     }
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(transform.position, _interactionDistance);
+        Gizmos.DrawWireSphere(transform.position, _interactionDistance / 2);
     }
 }

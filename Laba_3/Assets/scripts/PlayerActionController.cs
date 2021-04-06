@@ -17,7 +17,6 @@ public class PlayerActionController : LivingCreatureActionController
     {
 
         if (collider) {
-            Debug.Log("Col" + collider.gameObject);
         }
         if (_lastTarget != null)
         {
